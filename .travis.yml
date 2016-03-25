@@ -8,6 +8,6 @@ compiler:
 install:
   - wget https://github.com/mcellteam/nutmeg/archive/master.zip
   - unzip master.zip
-  - cd nutmeg
+  - cd nutmeg-master
   - go build
 script: cd ./src && ./bootstrap && ./configure && make
