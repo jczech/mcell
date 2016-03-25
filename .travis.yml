@@ -1,12 +1,10 @@
 os:
   - linux
-  - osx
 language: c
 compiler:
   - gcc
-  - clang
 install:
-  - git clone https://gitub.com/mcellteam/nutmeg
+  - go get gitub.com/mcellteam/nutmeg
   - cd nutmeg
   - go build
 script: cd ./src && ./bootstrap && ./configure && make
