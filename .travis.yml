@@ -6,7 +6,8 @@ language:
 compiler:
   - gcc
 install:
-  - go get github.com/mcellteam/nutmeg
+  - wget https://github.com/mcellteam/nutmeg/archive/master.zip
+  - unzip master.zip
   - cd nutmeg
   - go build
 script: cd ./src && ./bootstrap && ./configure && make
