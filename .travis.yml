@@ -11,9 +11,15 @@ install:
   - echo $GOPATH
   - wget https://github.com/mcellteam/nutmeg/archive/master.zip
   - unzip master.zip
-  - cd nutmeg-master
+  - mv nutmeg-master nutmeg
+  - cd nutmeg
   - go get github.com/mcellteam/nutmeg/src/engine
   - go get github.com/mcellteam/nutmeg/src/misc
   - go get github.com/mcellteam/nutmeg/src/tomlParser
   - go build
+  - echo 'testDir = "/home/travis/nutmeg/tests"\nincludeDir = "/home/travis/nutmeg/toml_includes"\nmcellPath = "/home/travis/mcell/src/mcell"' > nutmeg.conf
+  - cd /home/travis
 script: cd ./src && ./bootstrap && ./configure && make
+after_success:
+  - cd /home/travis/nutmeg
+  - ./nutmeg -r=all
