@@ -17,9 +17,9 @@ install:
   - go get github.com/mcellteam/nutmeg/src/misc
   - go get github.com/mcellteam/nutmeg/src/tomlParser
   - go build
-  - echo 'testDir = "/home/travis/build/jczech/mcell/nutmeg/tests"' > nutmeg.conf
-  - echo 'includeDir = "/home/travis/build/jczech/mcell/nutmeg/toml_includes"' >> nutmeg.conf
-  - echo 'mcellPath = "/home/travis/build/jczech/mcell/src/mcell"' >> nutmeg.conf
+  - echo "testDir = \"${TRAVIS_BUILD_DIR}/nutmeg/tests\"" > nutmeg.conf
+  - echo "includeDir = \"${TRAVIS_BUILD_DIR}/nutmeg/toml_includes\"" >> nutmeg.conf
+  - echo "mcellPath = \"${TRAVIS_BUILD_DIR}/src/mcell\"" >> nutmeg.conf
   - cat nutmeg.conf
   - ls
   - cd ${TRAVIS_BUILD_DIR}
@@ -27,4 +27,4 @@ install:
 script: cd ./src && ./bootstrap && ./configure && make
 after_success:
   - cd ${TRAVIS_BUILD_DIR}/nutmeg
-  - ./nutmeg -r=all
+  - travis_wait ./nutmeg -r=all
