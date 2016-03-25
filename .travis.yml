@@ -6,7 +6,7 @@ language:
 compiler:
   - gcc
 install:
-  - go get gitub.com/mcellteam/nutmeg
+  - go get github.com/mcellteam/nutmeg
   - cd nutmeg
   - go build
 script: cd ./src && ./bootstrap && ./configure && make
