@@ -12,5 +12,5 @@ install:
   - wget https://github.com/mcellteam/nutmeg/archive/master.zip
   - unzip master.zip
   - cd nutmeg-master
-  - go build
+  - go build .
 script: cd ./src && ./bootstrap && ./configure && make
