@@ -19,9 +19,9 @@ install:
   - go build
   - echo 'testDir = "/home/travis/nutmeg/tests"\nincludeDir = "/home/travis/nutmeg/toml_includes"\nmcellPath = "/home/travis/mcell/src/mcell"' > nutmeg.conf
   - ls
-  - cd /home/travis/mcell
+  - cd ${TRAVIS_BUILD_DIR}
   - ls
 script: cd ./src && ./bootstrap && ./configure && make
 after_success:
-  - cd /home/travis/nutmeg
+  - cd ${TRAVIS_BUILD_DIR}/nutmeg
   - ./nutmeg -r=all
