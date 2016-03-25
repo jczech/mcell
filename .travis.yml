@@ -5,4 +5,8 @@ language: c
 compiler:
   - gcc
   - clang
+install:
+  - git clone https://gitub.com/mcellteam/nutmeg
+  - cd nutmeg
+  - go build
 script: cd ./src && ./bootstrap && ./configure && make
