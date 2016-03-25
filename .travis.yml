@@ -12,6 +12,8 @@ install:
   - wget https://github.com/mcellteam/nutmeg/archive/master.zip
   - unzip master.zip
   - cd nutmeg-master
-  - go get .
-  - go build .
+  - go get github.com/mcellteam/nutmeg/src/engine
+  - go get github.com/mcellteam/nutmeg/src/misc
+  - go get github.com/mcellteam/nutmeg/src/tomlParser
+  - go build
 script: cd ./src && ./bootstrap && ./configure && make
