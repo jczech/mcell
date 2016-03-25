@@ -7,7 +7,7 @@ compiler:
   - gcc
 install:
   - mkdir go
-  - export GOPATH=${TRAVIS_BUILD_DIR}/go
+  - export GOPATH=$HOME
   - echo $GOPATH
   - wget https://github.com/mcellteam/nutmeg/archive/master.zip
   - unzip master.zip
