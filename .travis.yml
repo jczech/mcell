@@ -18,7 +18,9 @@ install:
   - go get github.com/mcellteam/nutmeg/src/tomlParser
   - go build
   - echo 'testDir = "/home/travis/nutmeg/tests"\nincludeDir = "/home/travis/nutmeg/toml_includes"\nmcellPath = "/home/travis/mcell/src/mcell"' > nutmeg.conf
-  - cd /home/travis
+  - ls
+  - cd /home/travis/mcell
+  - ls
 script: cd ./src && ./bootstrap && ./configure && make
 after_success:
   - cd /home/travis/nutmeg
