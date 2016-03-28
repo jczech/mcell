@@ -1,11 +1,14 @@
 os:
   - linux
+  - osx
 language:
   - c
   - go
 compiler:
   - gcc
+  - clang
 install:
+  # This is just for building and setting up nutmeg
   - mkdir go
   - export GOPATH=$HOME
   - echo $GOPATH
@@ -20,12 +23,12 @@ install:
   - echo "testDir = \"${TRAVIS_BUILD_DIR}/nutmeg/tests\"" > nutmeg.conf
   - echo "includeDir = \"${TRAVIS_BUILD_DIR}/nutmeg/toml_includes\"" >> nutmeg.conf
   - echo "mcellPath = \"${TRAVIS_BUILD_DIR}/src/mcell\"" >> nutmeg.conf
-  - cat nutmeg.conf
-  - ls
   - cd ${TRAVIS_BUILD_DIR}
-  - ls
-script: cd ./src && ./bootstrap && ./configure && make
-after_success:
+script: 
+  # This first line is what builds MCell. The rest is for nutmeg
+  - cd ./src && ./bootstrap && ./configure && make
   - cd ${TRAVIS_BUILD_DIR}/nutmeg
+  # Grab the number of tests in nutmeg testsuite
   - end=$(./nutmeg -l | tail -n 1 | grep --color=never -o "[1-9]*")
+  # We need to use travis_wait since some of these tests take a long time
   - for i in $(seq 1 $end); do travis_wait ./nutmeg -r=$i; done
