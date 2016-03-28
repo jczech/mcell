@@ -28,4 +28,4 @@ script: cd ./src && ./bootstrap && ./configure && make
 after_success:
   - cd ${TRAVIS_BUILD_DIR}/nutmeg
   - end=$(./nutmeg -l | tail -n 1 | grep --color=never -o "[1-9]*")
-  - for i in {1..$end}; do travis_wait ./nutmeg -r=$i; done
+  - for i in $(seq 1 $end); do travis_wait ./nutmeg -r=$i; done
