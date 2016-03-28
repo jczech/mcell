@@ -27,20 +27,5 @@ install:
 script: cd ./src && ./bootstrap && ./configure && make
 after_success:
   - cd ${TRAVIS_BUILD_DIR}/nutmeg
-  - travis_wait ./nutmeg -r=1:10
-  - travis_wait ./nutmeg -r=10:20
-  - travis_wait ./nutmeg -r=20:30
-  - travis_wait ./nutmeg -r=40:50
-  - travis_wait ./nutmeg -r=50:60
-  - travis_wait ./nutmeg -r=60:70
-  - travis_wait ./nutmeg -r=70:80
-  - travis_wait ./nutmeg -r=80:90
-  - travis_wait ./nutmeg -r=90:100
-  - travis_wait ./nutmeg -r=100:110
-  - travis_wait ./nutmeg -r=110:120
-  - travis_wait ./nutmeg -r=120:130
-  - travis_wait ./nutmeg -r=130:140
-  - travis_wait ./nutmeg -r=140:150
-  - travis_wait ./nutmeg -r=150:160
-  - travis_wait ./nutmeg -r=160:170
-  - travis_wait ./nutmeg -r=170:179
+  - end=$(./nutmeg -l | tail -n 1 | grep --color=never -o "[1-9]*")
+  - for i in {1..$end}; do travis_wait ./nutmeg -r=$i; done
